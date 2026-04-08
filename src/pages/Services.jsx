@@ -30,7 +30,7 @@ function ServicesContext() {
 }
 
 function ServicesList() {
-  let [services, setServices] = useState([])
+   let [services, setServices] = useState([])
   let [loading, setLoading] = useState(true)
   let [error, setError] = useState(false)
 
@@ -39,16 +39,8 @@ function ServicesList() {
       setLoading(true)
 
       let res = await axios.get("https://salon-backend-jwt.onrender.com/services")
-      console.log(res.data);
-      
 
-      if (!res.ok) {
-        throw new Error("API Error")
-      }
-
-      let data = await res.json()
-
-      setServices(data?.data || [])
+      setServices(res.data?.data || [])
 
     } catch (err) {
       console.log(err)
@@ -81,21 +73,28 @@ function ServicesList() {
             services.map((service, index) => (
               <div className="col-md-4" key={index}>
                 <div className="service-item">
-                    <Link to={`./Servicesdetail/${service._id}`}>
-                  
-                  <div className="thumb">
-                    <img
-                      src={service.service_image}
-                      alt={service.service_name || "service"}
-                    />
-                  </div>
 
-                  <div className="service-info text-center">
-                    <h3>{service.service_name}</h3>
-                    <p>{service.service_description}</p>
-                  </div>
+                  <Link to={`/Servicesdetail/${service._id}`}>
+                    <div className="thumb">
+                      <img
+                        src={service.service_image}
+                        alt={service.service_name || "service"}
+                      />
+                    </div>
+
+                    <div className="service-info text-center">
+                      <h3>{service.service_name}</h3>
+                      <p>{service.service_description}</p>
+                    </div>
                   </Link>
-                      <Link to={`/Servicesdetail/${service._id}`} className="btn btn-default"> read more</Link>
+
+                  <Link
+                    to={`/Servicesdetail/${service._id}`}
+                    className="btn btn-default"
+                  >
+                    read more
+                  </Link>
+
                 </div>
               </div>
             ))
