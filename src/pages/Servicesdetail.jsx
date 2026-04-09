@@ -34,10 +34,10 @@ function Servicesdetaillist() {
   let [loading, setLoading] = useState(true)
   let [error, setError] = useState(null)
   let [booking, setbooking] = useState({
-  service_id: id,
-  booking_date: "",
-  notes: ""
-})
+    service_id: id,
+    booking_date: "",
+    notes: ""
+  })
 
   let navigate = useNavigate();
 
@@ -82,7 +82,7 @@ function Servicesdetaillist() {
         })
 
         try {
-          let orderresponse = await api.post("/user/getorderid", { booking_id: bookingresponse.data.booking })
+          let orderresponse = await api.post("/user/getOrderId", { booking_id: bookingresponse.data.booking })
 
           console.log(orderresponse.data.data);
 
@@ -91,7 +91,7 @@ function Servicesdetaillist() {
 
             const options = {
               key: "rzp_test_VQhEfe2NCXbbwI",
-              amount : amount,
+              amount: amount,
               currency: currency,
               name: "salon polatform",
               description: "test transtion",
@@ -144,7 +144,7 @@ function Servicesdetaillist() {
 
     } catch (e) {
       console.log(e);
-      
+
 
     }
 
@@ -186,7 +186,11 @@ function Servicesdetaillist() {
                     Book Service
                   </button>
 
+
+
                 </div>
+
+
               </div>
             </div>
 
@@ -230,55 +234,57 @@ function Servicesdetaillist() {
               </div>
             </div>
 
-            
+
 
           </div>
+
           <form
-  onSubmit={handelsubmit}
-  className="booking-form shadow-lg rounded-4 p-4 p-md-5 animate__animated animate__fadeInUp"
->
+            onSubmit={handelsubmit}
+            className="booking-form shadow-lg rounded-4 p-4 p-md-5 animate__animated animate__fadeInUp"
+          >
 
-  <h3 className="text-center mb-4 fw-bold gradient-text">
-    Book Your Service 💇‍♀️
-  </h3>
+            <h3 className="text-center mb-4 fw-bold gradient-text">
+              Book Your Service 💇‍♀️
+            </h3>
 
-  {/* DATE */}
-  <div className="form-group mb-4">
-    <label className="form-label">Booking Date</label>
-    <input
-      type="date"
-      className="form-control custom-input"
-      name="booking_date"
-      value={booking.booking_date}
-      onChange={handelinputchage}
-      required
-    />
-  </div>
+            {/* DATE */}
+            <div className="form-group mb-4">
+              <label className="form-label">Booking Date</label>
+              <input
+                type="date"
+                className="form-control custom-input"
+                name="booking_date"
+                value={booking.booking_date}
+                onChange={handelinputchage}
+                required
+              />
+            </div>
 
-  {/* NOTES */}
-  <div className="form-group mb-4">
-    <label className="form-label">Notes</label>
-    <textarea
-      className="form-control custom-input"
-      placeholder="Write your message..."
-      rows="4"
-      name="notes"
-      value={booking.notes}
-      onChange={handelinputchage}
-      required
-    ></textarea>
-  </div>
+            {/* NOTES */}
+            <div className="form-group mb-4">
+              <label className="form-label">Notes</label>
+              <textarea
+                className="form-control custom-input"
+                placeholder="Write your message..."
+                rows="4"
+                name="notes"
+                value={booking.notes}
+                onChange={handelinputchage}
+                required
+              ></textarea>
+            </div>
 
-  {/* BUTTON */}
-  <button
-    type="submit"
-    className="btn btn-gradient w-100 py-3 fw-bold"
-    disabled={loading}
-  >
-    {loading ? "Processing..." : "Book & Pay 🚀"}
-  </button>
+            {/* BUTTON */}
+            <button
+              type="submit"
+              className="btn btn-gradient w-100 py-3 fw-bold"
+              disabled={loading}
+            >
+              {loading ? "Processing..." : "Book & Pay 🚀"}
+            </button>
 
-</form>
+          </form>
+          
         </div>
       </section>
     </div>

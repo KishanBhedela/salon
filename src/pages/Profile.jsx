@@ -3,9 +3,8 @@ import Heder from '../common/Heder'
 import Footer from '../common/Footer'
 import Banner from '../common/Banner'
 import Makeappointment from '../common/Makeappointment'
-import axios from 'axios'
 import { useState, useEffect } from 'react'
-
+import api from '../utility/Apitoken'
 import "./style.css"
 
 function Profile() {
